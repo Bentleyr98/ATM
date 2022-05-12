@@ -11,16 +11,16 @@ public class Database {
     private String lastName;
     private int customerID;
     private int customerPIN;
-    private float savingAccount;
-    private float checkingAccount;
+    private double savingAccount;
+    private double checkingAccount;
 
     //member variables for current user
     private String userFirstName;
     private String userLastName;
     private int userCustomerID;
     private int userCustomerPIN;
-    private float userSavingAccount;
-    private float userCheckingAccount;
+    private double userSavingAccount;
+    private double userCheckingAccount;
 
 
     public void connectDatabase(ATM atm){
@@ -52,8 +52,8 @@ public class Database {
                 if(this.customerID == atm.getID() & this.customerPIN == atm.getPIN()) {
                     this.userCustomerID = customerID;
                     this.userCustomerPIN = customerPIN;
-                    this.userCheckingAccount = checkingAccount;
-                    this.userSavingAccount = savingAccount;
+                    this.userCheckingAccount = Math.round(checkingAccount * 100.0) / 100.0;
+                    this.userSavingAccount = Math.round(savingAccount * 100.0) / 100.0;
                     this.userFirstName = firstName;
                     this.userLastName = lastName;
                 }
@@ -82,11 +82,11 @@ public class Database {
         return this.userCustomerPIN;
     }
 
-    public float getSavings(){
+    public double getSavings(){
         return this.userSavingAccount;
     }
 
-    public float getCheckings(){
+    public double getCheckings(){
         return this.userCheckingAccount;
     }
 
